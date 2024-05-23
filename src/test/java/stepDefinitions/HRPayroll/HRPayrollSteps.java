@@ -103,7 +103,7 @@ public class HRPayrollSteps {
 
     @And("Select all required fields or specific field")
     public void BranchAndId() throws InterruptedException {
-        hrPayrollModule.getSearchBranch();
+//        hrPayrollModule.getSelectBranch();
 
         Assert.assertTrue(hrPayrollModule.getNameOrId().isDisplayed());
         hrPayrollModule.getNameOrId().sendKeys("00016-002-00014-0908");

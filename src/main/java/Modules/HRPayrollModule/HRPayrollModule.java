@@ -28,9 +28,9 @@ public class HRPayrollModule {
     By address = By.xpath("//textarea[@id='present_address']");
     By saveButton = By.xpath("//input[@id='add']");
     By appointmentLetterList = By.xpath("//span[normalize-space()='Appoinment Letter List']");
-    By searchBranch = By.xpath("//select[@id='searchBranch']");
-    By nameId = By.xpath("//input[@placeholder='Name or ID']");
-    By searchButton = By.xpath("//input[@name='Show']");
+    By selectBranch = By.xpath("//span[@id='select2-chosen-1']");
+    By nameId = By.xpath("//input[@id='employeeId']");
+    By searchButton = By.xpath("//input[@id='submit']");
     By documentManager = By.xpath("//span[normalize-space()='Document Manager']");
     By newDocument = By.xpath("//a[@class='btn btn-info pull-right addViewBtn']");
     By closeButton = By.xpath("//a[normalize-space()='Close']");
@@ -104,8 +104,8 @@ public class HRPayrollModule {
         return driver.findElement(appointmentLetterList);
     }
 
-    public void getSearchBranch() {
-        Select s = new Select(driver.findElement(searchBranch));
+    public void getSelectBranch() {
+        Select s = new Select(driver.findElement(selectBranch));
         s.selectByIndex(1);
     }
     public WebElement getNameOrId() {
