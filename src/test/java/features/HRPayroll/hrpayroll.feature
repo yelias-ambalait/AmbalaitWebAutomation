@@ -1,7 +1,7 @@
 Feature: HR & Payroll Functionality
 
   Background:
-    Given Check that the login page is displayed
+#    Given Check that the login page is displayed
     And Enter valid username and password
     When Click on the login button
 

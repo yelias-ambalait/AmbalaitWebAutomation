@@ -1,5 +1,4 @@
 package stepDefinitions.Login;
-
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -10,6 +9,8 @@ import Modules.LoginPage.LoginPage;
 import utils.ContextSetup;
 
 public class LoginStep {
+
+
 
     public WebDriver driver;
     ContextSetup contextSetup;
@@ -23,65 +24,64 @@ public class LoginStep {
 
     @Given("Check that the login page is displayed")
     public void getHomePage() throws InterruptedException {
-        Thread.sleep(1000);
         Assert.assertTrue(loginPage.getLoginForm().isDisplayed());
         System.out.println(loginPage.getText);
         Assert.assertEquals(loginPage.getUsernameLabel().getText(), "User Name:");
         Assert.assertEquals(loginPage.getPasswordLabel().getText(), "Password:");
         Assert.assertEquals(loginPage.getLoginButton().getText(), "Log In");
-        Thread.sleep(1000);
+
     }
 
     @And("Enter valid username and password")
     public void getCredentials() throws InterruptedException {
         loginPage.getUserName().sendKeys("superadmin");
-        Thread.sleep(1000);
+
         loginPage.getPassword().sendKeys("123456");
-        Thread.sleep(1000);
+
     }
 
     @When("Click on the login button")
     public void getLogin() throws InterruptedException {
         Assert.assertTrue(loginPage.getLoginButton().isDisplayed());
-        Thread.sleep(1000);
+
         loginPage.getLoginButton().click();
-        Thread.sleep(1000);
+
     }
 
     @When("Check that the homepage is displayed")
     public void HomePage() throws InterruptedException {
         Assert.assertTrue(loginPage.getHome().isDisplayed());
-        Thread.sleep(1000);
+
         Assert.assertEquals(loginPage.getHome().getText(), "Laravel");
-        Thread.sleep(1000);
+
     }
 
     @And("Check that the super admin is displayed top right corner")
     public void SuperAdmin() throws InterruptedException {
         Assert.assertTrue(loginPage.getSuperAdmin().isDisplayed());
-        Thread.sleep(1000);
+
         Assert.assertEquals(loginPage.getSuperAdmin().getText(), "Super Admin");
-        Thread.sleep(1000);
+
     }
 
     @When("Click on the super admin")
     public void clickOnTheSuperAdmin() throws InterruptedException {
         loginPage.getSuperAdmin().click();
-        Thread.sleep(1000);
+
     }
 
     @Then("Check that the logout button is displayed")
     public void checkThatTheLogoutButtonIsDisplayed() throws InterruptedException {
         Assert.assertTrue(loginPage.getLogoutButton().isDisplayed());
-        Thread.sleep(1000);
+
         Assert.assertEquals(loginPage.getLogoutButton().getText(), "Logout");
-        Thread.sleep(1000);
+
     }
 
     @When("Click on the logout button")
     public void clickOnTheLogoutButton() throws InterruptedException {
         loginPage.getLogoutButton().click();
-        Thread.sleep(1000);
+
     }
 
     @Then("Check that the login page is displayed again")
@@ -90,41 +90,41 @@ public class LoginStep {
         Assert.assertEquals(loginPage.getUsernameLabel().getText(), "User Name:");
         Assert.assertEquals(loginPage.getPasswordLabel().getText(), "Password:");
         Assert.assertEquals(loginPage.getLoginButton().getText(), "Log In");
-        Thread.sleep(2000);
+
     }
 
 //    TC_2
     @And("Enter invalid username and password")
     public void InvalidUsernamePassword() throws InterruptedException {
         loginPage.getUserName().sendKeys("admin");
-        Thread.sleep(1000);
         loginPage.getPassword().sendKeys("12345");
-        Thread.sleep(1000);
+
     }
 
     @Then("Check that the invalid message is displayed")
     public void InvalidMessage() throws InterruptedException {
+        Thread.sleep(1000);
         Assert.assertTrue(loginPage.getInvalidUsername().isDisplayed());
-        Thread.sleep(1000);
+
         Assert.assertEquals(loginPage.getInvalidUsername().getText(), "Invalid User Name!");
-        Thread.sleep(1000);
+
 
     }
 
     @And("Enter valid username and invalid password")
     public void enterValidUsernameAndInvalidPassword() throws InterruptedException {
         loginPage.getUserName().sendKeys("superadmin");
-        Thread.sleep(1000);
+
         loginPage.getPassword().sendKeys("12345");
-        Thread.sleep(1000);
+
     }
 
     @Then("Check that the error message is displayed for incorrect password")
     public void checkThatTheErrorMessageIsDisplayedForIncorrectPassword() throws InterruptedException {
         Assert.assertTrue(loginPage.getInvalidPassword().isDisplayed());
-        Thread.sleep(1000);
+
         Assert.assertEquals(loginPage.getInvalidPassword().getText(), "Credentials do not match!");
-        Thread.sleep(1000);
+
     }
 
 
