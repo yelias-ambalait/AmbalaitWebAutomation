@@ -28,7 +28,7 @@ public class LoginStep {
 
     @Given("Check that the login page is displayed")
     public void getHomePage() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(loginPage.driver, Duration.ofSeconds(5));
+        WebDriverWait wait = new WebDriverWait(loginPage.driver, Duration.ofSeconds(7));
         wait.until(ExpectedConditions.visibilityOf(loginPage.getLoginForm()));
         Assert.assertTrue(loginPage.getLoginForm().isDisplayed());
 //        System.out.println(loginPage.getText);

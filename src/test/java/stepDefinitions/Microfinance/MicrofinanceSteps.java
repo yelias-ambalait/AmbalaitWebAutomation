@@ -8,8 +8,12 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.ContextSetup;
+
+import java.time.Duration;
 
 public class MicrofinanceSteps {
 
@@ -25,6 +29,8 @@ public class MicrofinanceSteps {
 
     @Given("Click on the microfinance module")
     public void MicrofinanceModule() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(microfinancePage.driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOf(microfinancePage.getMicrofinanceModule()));
         Assert.assertTrue(microfinancePage.getMicrofinanceModule().isDisplayed());
         microfinancePage.getMicrofinanceModule().click();
 
@@ -32,6 +38,7 @@ public class MicrofinanceSteps {
 
     @Then("Check that the microfinance module dashboard is displayed")
     public void MicrofinanceModuleDashboard() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         Assert.assertTrue(microfinancePage.getMicrofinanceDashboard().isDisplayed());
         Assert.assertTrue(microfinancePage.getConfiguration().isDisplayed());
         Assert.assertEquals(microfinancePage.getConfiguration().getText(), "Configuration");

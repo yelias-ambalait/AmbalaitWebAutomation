@@ -5,9 +5,13 @@ import Modules.PageObjectManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.Base;
 import utils.ContextSetup;
+
+import java.time.Duration;
 
 public class HRPayrollSteps {
     public WebDriver driver;
@@ -24,14 +28,17 @@ public class HRPayrollSteps {
 
     @When("Click on the HR & Payroll")
     public void HRPayroll() throws InterruptedException {
+
         Assert.assertTrue(hrPayrollModule.getHrPayroll().isDisplayed());
-        Assert.assertEquals(hrPayrollModule.getHrPayroll().getText(),"HR & Payroll");
+        Assert.assertEquals(hrPayrollModule.getHrPayroll().getText(), "HR & Payroll");
         hrPayrollModule.getHrPayroll().click();
 
     }
 
     @And("Hover over the Information")
     public void Information() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.visibilityOf(hrPayrollModule.getInformation()));
         PageObjectManager.hoverToElement(hrPayrollModule.getInformation());
 
     }

@@ -42,10 +42,6 @@ public class Base {
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             driver.manage().window().maximize();
             driver.get(url);
-
-//            WebDriverWait wait  = new WebDriverWait(driver, Duration.ofSeconds(60));
-//            wait.until(ExpectedConditions.urlToBe(url));
-
         }
         return driver;
     }
