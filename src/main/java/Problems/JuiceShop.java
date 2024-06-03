@@ -15,7 +15,7 @@ public class JuiceShop {
         WebDriver driver;
         String url;
 
-        String uName = "juiceshop@yopmail.com";
+        String uName = "ojuiceshop@yopmail.com";
         String pwd = "JuiceShop#123";
 
 //        By account = By.xpath("//button[@id='navbarAccount']");
@@ -29,7 +29,7 @@ public class JuiceShop {
         By addToBasket = By.xpath("(//span[contains(text(),'Add to Basket')])[1]");
         By addedNotification = By.className("mat-simple-snack-bar-content");
         By yourBasket = By.xpath("//span[normalize-space()='Your Basket']");
-        By checkOut = By.id("checkoutButton");
+        By checkOut = By.xpath("//span[normalize-space()='Checkout']");
         By addNewAddress = By.xpath("//span[normalize-space()='Add New Address']");
         By addNewAddressForm = By.xpath("//mat-card[@class='mat-card mat-focus-indicator mat-elevation-z6']");
         By country = By.xpath("//input[@id='mat-input-1']");
@@ -79,10 +79,10 @@ public class JuiceShop {
         driver.findElement(addToBasket).isDisplayed();
         driver.findElement(addToBasket).click();
 
-//        wait.until(ExpectedConditions.presenceOfElementLocated(addedNotification));
-//        driver.findElement(addedNotification).isDisplayed();
-//        driver.findElement(addedNotification).getText();
-//        System.out.println("Added Item: "+driver.findElement(addedNotification).getText());
+        wait.until(ExpectedConditions.presenceOfElementLocated(addedNotification));
+        driver.findElement(addedNotification).isDisplayed();
+        driver.findElement(addedNotification).getText();
+        System.out.println("Added Item: "+driver.findElement(addedNotification).getText());
 
         driver.findElement(yourBasket).isDisplayed();
         driver.findElement(yourBasket).click();
