@@ -1,6 +1,7 @@
 package Problems;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 import java.time.Duration;
+import java.util.List;
 
 class Another{
     public WebDriver driver;
@@ -30,7 +32,7 @@ class Another{
 }
 public class Erp09 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         WebDriver driver;
         String url;
 
@@ -112,14 +114,35 @@ public class Erp09 {
         addUserForm.isDisplayed();
         System.out.println(addUserForm.getText());
 
-        By userRole = By.xpath("(//div[@class='oxd-select-text-input'])[1]");
-        WebElement userRoleDropdown = driver.findElement(userRole);
-        userRoleDropdown.click();
+        By dropdown = By.xpath("//div[@class='oxd-select-text-input']");
+        List<WebElement> userRoleStatusDropdown = driver.findElements(dropdown);
+        userRoleStatusDropdown.get(0).click();
 
-        By userRoleOpt = By.xpath("//div[contains(text(), 'Admin')]");
+        By listbox = By.xpath("(//div[@role='listbox'])");
+        By userRoleOpt = By.xpath("//span[contains(text(), 'Admin')]");
         WebElement userRoleOption = driver.findElement(userRoleOpt);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(userRoleOpt));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(listbox));
         userRoleOption.click();
+
+        By empNameHint = By.xpath("//input[@placeholder='Type for hints...']");
+        driver.findElement(empNameHint).sendKeys("A");
+        Thread.sleep(2000);
+        driver.findElement(empNameHint).sendKeys(Keys.chord(Keys.ARROW_DOWN), Keys.ENTER);
+
+        userRoleStatusDropdown.get(1).click();
+        By status = By.xpath("//span[contains(text(), 'Enabled')]");
+        WebElement statusOption = driver.findElement(status);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(listbox));
+        statusOption.click();
+
+        By empUnamePass = By.className("oxd-input oxd-input--active");
+        List<WebElement> employeeUnamePassword = driver.findElements(empUnamePass);
+        employeeUnamePassword.get(0).sendKeys("john-doe");
+        employeeUnamePassword.get(1).sendKeys("Asdf#1234");
+        employeeUnamePassword.get(2).sendKeys("Asdf#1234");
+
+
+
 
 
 
