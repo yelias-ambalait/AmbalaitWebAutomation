@@ -1,6 +1,7 @@
 package Problems;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -11,11 +12,11 @@ import java.time.Duration;
 
 public class JuiceShop {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         WebDriver driver;
         String url;
 
-        String uName = "ojuiceshop@yopmail.com";
+        String uName = "hovab13674@jzexport.com";
         String pwd = "JuiceShop#123";
 
 //        By account = By.xpath("//button[@id='navbarAccount']");
@@ -27,19 +28,28 @@ public class JuiceShop {
         By password = By.id("password");
         By loginButton = By.xpath("//button[@id='loginButton']");
         By addToBasket = By.xpath("(//span[contains(text(),'Add to Basket')])[1]");
-        By addedNotification = By.className("mat-simple-snack-bar-content");
+        By addedNotification = By.xpath("//span[@class='mat-simple-snack-bar-content']");
         By yourBasket = By.xpath("//span[normalize-space()='Your Basket']");
-        By checkOut = By.xpath("//span[normalize-space()='Checkout']");
+        By checkOut = By.id("checkoutButton");
+        By checkOutBtn = By.xpath("//app-basket[1]/mat-card[1]/button[1]/span[1]");
         By addNewAddress = By.xpath("//span[normalize-space()='Add New Address']");
         By addNewAddressForm = By.xpath("//mat-card[@class='mat-card mat-focus-indicator mat-elevation-z6']");
-        By country = By.xpath("//input[@id='mat-input-1']");
-        By name = By.xpath("//input[@id='mat-input-2']");
-        By mobileNo = By.xpath("//input[@id='mat-input-3']");
-        By zipCode = By.xpath("//input[@id='mat-input-4']");
+        By country = By.xpath("//input[@placeholder='Please provide a country.']");
+        By name = By.xpath("//input[@placeholder='Please provide a name.']");
+        By mobileNo = By.xpath("//input[@placeholder='Please provide a mobile number.']");
+        By zipCode = By.xpath("//input[@placeholder='Please provide a ZIP code.']");
         By address = By.xpath("//textarea[@id='address']");
-        By city = By.xpath("//input[@id='mat-input-6']");
-        By state = By.xpath("//input[@id='mat-input-7']");
+        By city = By.xpath("//input[@placeholder='Please provide a city.']");
+        By state = By.xpath("//input[@placeholder='Please provide a state.']");
         By submitButton = By.xpath("//button[@id='submitButton']");
+
+
+        By searchButton = By.xpath("//mat-icon[normalize-space()='search']");
+        By searchInput = By.xpath("//input[@id='mat-input-0']");
+        By searchItems = By.xpath("//mat-grid-list[@class='mat-grid-list']");
+
+
+
 
 
 
@@ -75,52 +85,84 @@ public class JuiceShop {
         driver.findElement(loginButton).isDisplayed();
         driver.findElement(loginButton).click();
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(addToBasket));
-        driver.findElement(addToBasket).isDisplayed();
-        driver.findElement(addToBasket).click();
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(addedNotification));
-        driver.findElement(addedNotification).isDisplayed();
-        driver.findElement(addedNotification).getText();
-        System.out.println("Added Item: "+driver.findElement(addedNotification).getText());
-
-        driver.findElement(yourBasket).isDisplayed();
-        driver.findElement(yourBasket).click();
-
-        wait.until(ExpectedConditions.presenceOfElementLocated(checkOut));
-        driver.findElement(checkOut).isDisplayed();
-        driver.findElement(checkOut).click();
-        System.out.println("Checkout done");
-
-        driver.findElement(addNewAddress).isDisplayed();
-        driver.findElement(addNewAddress).click();
-
-        wait.until(ExpectedConditions.presenceOfElementLocated(addNewAddressForm));
-        driver.findElement(addNewAddressForm).isDisplayed();
-
-        driver.findElement(country).isDisplayed();
-        driver.findElement(country).sendKeys("country");
-
-        driver.findElement(name).isDisplayed();
-        driver.findElement(name).sendKeys("name");
-
-        driver.findElement(mobileNo).isDisplayed();
-        driver.findElement(mobileNo).sendKeys("0147896552");
-
-        driver.findElement(zipCode).isDisplayed();
-        driver.findElement(zipCode).sendKeys("6552");
-
-        driver.findElement(address).isDisplayed();
-        driver.findElement(address).sendKeys("address");
-
-        driver.findElement(city).isDisplayed();
-        driver.findElement(city).sendKeys("city");
-
-        driver.findElement(state).isDisplayed();
-        driver.findElement(state).sendKeys("state");
-
-        driver.findElement(submitButton).isDisplayed();
+//
+//        wait.until(ExpectedConditions.presenceOfElementLocated(addToBasket));
+//        driver.findElement(addToBasket).isDisplayed();
+//        driver.findElement(addToBasket).click();
+//        Thread.sleep(3000);
+//
+//
+//        wait.until(ExpectedConditions.presenceOfElementLocated(addedNotification));
+//        driver.findElement(addedNotification).isDisplayed();
+//        driver.findElement(addedNotification).getText();
+//        System.out.println("Added Item: "+driver.findElement(addedNotification).getText());
+//
+//
+//        wait.until(ExpectedConditions.presenceOfElementLocated(yourBasket));
+//        driver.findElement(yourBasket).isDisplayed();
+//        driver.findElement(yourBasket).click();
+//        Thread.sleep(2000);
+//
+//        wait.until(ExpectedConditions.presenceOfElementLocated(checkOut));
+//        driver.findElement(checkOut).isDisplayed();
+//
+//        driver.findElement(checkOutBtn).isDisplayed();
+//        driver.findElement(checkOutBtn).click();
+//
+//
+//        wait.until(ExpectedConditions.presenceOfElementLocated(addNewAddress));
+//        driver.findElement(addNewAddress).isDisplayed();
+//        driver.findElement(addNewAddress).click();
+////        Thread.sleep(2000);
+//
+//        wait.until(ExpectedConditions.presenceOfElementLocated(addNewAddressForm));
+//        driver.findElement(addNewAddressForm).isDisplayed();
+////        Thread.sleep(2000);
+//
+//        driver.findElement(country).isDisplayed();
+//        driver.findElement(country).sendKeys("country");
+//
+//        driver.findElement(name).isDisplayed();
+//        driver.findElement(name).sendKeys("name");
+//
+//        driver.findElement(mobileNo).isDisplayed();
+//        driver.findElement(mobileNo).sendKeys("0147896552");
+//
+//        driver.findElement(zipCode).isDisplayed();
+//        driver.findElement(zipCode).sendKeys("6552");
+//
+//        driver.findElement(address).isDisplayed();
+//        driver.findElement(address).sendKeys("address");
+//
+//        driver.findElement(city).isDisplayed();
+//        driver.findElement(city).sendKeys("city");
+//
+//        driver.findElement(state).isDisplayed();
+//        driver.findElement(state).sendKeys("state");
+//
+//        driver.findElement(submitButton).isDisplayed();
 //        driver.findElement(submitButton).click();
+
+
+
+//--------------------------------Searching ------------------------------------
+
+        driver.findElement(searchButton).isDisplayed();
+        driver.findElement(searchButton).click();
+
+        driver.findElement(searchInput).isDisplayed();
+        driver.findElement(searchInput).sendKeys("apple");
+        driver.findElement(searchInput).sendKeys(Keys.ENTER);
+
+        driver.findElement(searchItems).isDisplayed();
+        driver.findElement(searchItems).getText();
+        System.out.println("List Items: "+driver.findElement(searchItems).getText());
+
+
+
+
+
 
 
     }
