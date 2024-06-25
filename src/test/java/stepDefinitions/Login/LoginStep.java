@@ -10,7 +10,10 @@ import org.testng.Assert;
 import Modules.LoginPage.LoginPage;
 import utils.ContextSetup;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.Duration;
+import java.util.Properties;
 
 public class LoginStep {
 
@@ -19,11 +22,18 @@ public class LoginStep {
     public WebDriver driver;
     ContextSetup contextSetup;
     LoginPage loginPage;
+    Properties properties;
 
     public LoginStep(ContextSetup contextSetup) {
         this.contextSetup = contextSetup;
         this.loginPage = contextSetup.pageObjectManager.getLoginPage();
         this.driver = loginPage.driver;
+        properties = new Properties();
+        try {
+            properties.load(new FileInputStream(System.getProperty("user.dir") + "/src/test/resources/global.properties"));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Given("Check that the login page is displayed")
@@ -41,10 +51,16 @@ public class LoginStep {
 
     @And("Enter valid username and password")
     public void getCredentials() throws InterruptedException {
-        loginPage.getUserName().sendKeys("superadmin");
 
-        loginPage.getPassword().sendKeys("123456");
+//        String userName = System.getenv("USERNAME");
+//        String pwd = System.getenv("PASSWORD");
 
+        String username = properties.getProperty("username");
+        String password = properties.getProperty("password");
+
+
+        loginPage.getUserName().sendKeys(username);
+        loginPage.getPassword().sendKeys(password);
     }
 
     @When("Click on the login button")
